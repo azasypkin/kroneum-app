@@ -1,0 +1,37 @@
+[package]
+name = "kroneum"
+version = "0.1.0"
+description = "A quiet menu-bar companion for regular eye breaks"
+license = "MIT"
+repository = "https://github.com/azasypkin/kroneum-app"
+edition = "2021"
+rust-version = "1.90"
+
+[lib]
+name = "kroneum_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "~2.12.5", features = ["tray-icon", "image-png"] }
+tauri-plugin-autostart = "2"
+tauri-plugin-single-instance = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6"
+objc2-app-kit = { version = "0.3", default-features = false, features = ["NSSound", "NSFont", "NSFontDescriptor", "NSControl", "NSStatusItem", "NSStatusBarButton", "NSWindow", "NSScreen", "NSWorkspace", "NSAccessibility", "NSColor", "NSView", "NSGraphics", "objc2-quartz-core", "objc2-core-graphics"] }
+objc2-foundation = { version = "0.3", default-features = false, features = ["NSData", "NSString"] }
+objc2-quartz-core = { version = "0.3", default-features = false, features = ["CAAnimation", "CALayer", "CAMediaTiming", "CAMediaTimingFunction", "CABase", "CATransaction", "objc2-core-graphics"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

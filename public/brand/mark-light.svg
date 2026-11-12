@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 96" width="128" height="96"><defs>
+  <linearGradient id="ribbon" x1="18" y1="29" x2="117" y2="45" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#2c7951"/>
+    <stop offset=".22" stop-color="#518c3c"/>
+    <stop offset=".48" stop-color="#568c4b"/>
+    <stop offset=".72" stop-color="#367650"/>
+    <stop offset="1" stop-color="#163e30"/>
+  </linearGradient>
+  <linearGradient id="ribbon-edge" x1="40" y1="9" x2="102" y2="44" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#efffda" stop-opacity=".9"/>
+    <stop offset=".5" stop-color="#d7f0b0" stop-opacity=".35"/>
+    <stop offset="1" stop-color="#8dca8b" stop-opacity="0"/>
+  </linearGradient>
+  <radialGradient id="spark" cx=".44" cy=".36" r=".7">
+    <stop stop-color="#31573b"/><stop offset="1" stop-color="#284a34"/>
+  </radialGradient></defs>
+  <g fill="url(#ribbon)">
+    <path d="M4 52C20 49 29 18 51 9C79-2 100 19 124 46C104 31 88 22 67 28C43 34 25 57 4 52Z"/>
+    <path d="M4 52C20 49 29 18 51 9C79-2 100 19 124 46C104 31 88 22 67 28C43 34 25 57 4 52Z" transform="rotate(180 64 48)"/>
+  </g>
+  <g fill="none" stroke="url(#ribbon-edge)" stroke-width=".8" stroke-linecap="round">
+    <path d="M5 52C21 48 30 18 51 9C79-2 100 19 123 46"/>
+    <path d="M5 52C21 48 30 18 51 9C79-2 100 19 123 46" transform="rotate(180 64 48)"/>
+  </g>
+  <path d="M64 34C65.6 43.2 68.5 46.4 78 48C68.5 49.6 65.6 52.8 64 62C62.4 52.8 59.5 49.6 50 48C59.5 46.4 62.4 43.2 64 34Z" fill="url(#spark)"/></svg>
