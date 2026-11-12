@@ -1,6 +1,57 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
+for (const fixture of ['work', 'snoozed', 'break-alert', 'settings'] as const) {
+  for (const width of [340, 392]) {
+    test(`content stays horizontally centered at ${width}px (${fixture})`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width, height: 684 });
+      await page.goto(
+        `/?preview=${fixture === 'snoozed' ? 'alert' : fixture === 'settings' ? 'work' : fixture}`,
+      );
+      await expect(page.locator('#primary')).toBeEnabled();
+      if (fixture === 'snoozed')
+        await page.getByRole('button', { name: 'Snooze for 5 min' }).click();
+      if (fixture === 'settings')
+        await page.getByRole('button', { name: 'Open settings' }).click();
+      const geometry = await page.evaluate((settings) => {
+        const shell = document.querySelector('.shell')!.getBoundingClientRect();
+        const center = shell.x + shell.width / 2;
+        const selectors = settings
+          ? ['#settings-view', '.settings-group', '#save-settings']
+          : [
+              '#timer-view',
+              '#heading',
+              '.timer-face',
+              '.preset-grid',
+              '#primary',
+              '.care-note',
+            ];
+        return selectors.map((selector) => {
+          const box = document.querySelector(selector)!.getBoundingClientRect();
+          return {
+            selector,
+            offset: box.x + box.width / 2 - center,
+            left: box.left - shell.left,
+            right: shell.right - box.right,
+          };
+        });
+      }, fixture === 'settings');
+      for (const box of geometry) {
+        expect(
+          Math.abs(box.offset),
+          `${box.selector} is off center`,
+        ).toBeLessThanOrEqual(0.5);
+        expect(
+          Math.abs(box.left - box.right),
+          `${box.selector} has unequal outer spacing`,
+        ).toBeLessThanOrEqual(1);
+      }
+    });
+  }
+}
+
 for (const colorScheme of ['light', 'dark'] as const) {
   for (const deviceScaleFactor of [1, 2]) {
     test(`new brand assets render in ${colorScheme} appearance at ${deviceScaleFactor}×`, async ({

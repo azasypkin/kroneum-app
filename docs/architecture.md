@@ -105,6 +105,8 @@ The countdown has `role="timer"` with live announcements off. Timer states, erro
 The interface changes status text only when its content changes, so each tick does not repeat an announcement.
 An alarm changes the visible content and moves focus to the primary response.
 Completion actions keep separate hit areas and hover backgrounds. Short panels scroll rather than overlap the action controls.
+The main scroll area mirrors reserved scrollbar space on both sides, so classic scrollbars do not shift the content off center.
+Overlay scrollbars retain the same center line without reserved space. Older WebViews use their native scrollbar behavior.
 Timer captions wrap within the lower interior of the circle, rather than its full diameter. Long captions remain complete and unclipped.
 Balanced wrapping is a progressive enhancement. Older WKWebView versions use ordinary wrapping within the same width constraint.
 The header, countdown, and eye-break control share vector brand artwork. Native app and tray icons derive from the same geometry.

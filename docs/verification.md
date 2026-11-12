@@ -10,7 +10,7 @@ The build host uses macOS 26.7.3 on Apple Silicon, Rust 1.99.1, and Node.js 24.2
 | TypeScript and Prettier                                       | Passed                                    |
 | Presentation, branding, and window capability tests           | 38 passed                                 |
 | Rust engine, storage, placement, attention, and native checks | 64 passed                                 |
-| WebKit and Chromium interface checks                          | 108 passed                                |
+| WebKit and Chromium interface checks                          | 124 passed                                |
 | Light/dark accessibility checks                               | Passed within the interface suite         |
 | Alarm focus and layout fit                                    | Passed within the interface suite         |
 | Rust formatting                                               | Passed                                    |
@@ -52,6 +52,9 @@ Updated light/dark completion screenshots received a visual review.
 Caption regression tests first reproduced text crossing the ring in snooze and completion states.
 The corrected tests cover every caption at narrow and standard widths, with balanced and ordinary wrapping in both browser engines.
 They check the actual text rectangles against the circle, preserve the font size, and exclude clipping as a workaround.
+Horizontal alignment checks first reproduced a 7.5-pixel offset from a one-sided scrollbar gutter.
+The corrected checks cover work, snooze, completion, and scrollable settings at narrow and standard widths in both browser engines.
+Regenerated screenshots show equal outer spacing. GitHub rendering preserves the centered README screenshot table.
 
 ## Native checks that remain
 

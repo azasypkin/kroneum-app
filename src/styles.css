@@ -204,7 +204,8 @@ main {
   min-height: 0;
   overflow: auto;
   padding: 0 24px;
-  scrollbar-gutter: stable;
+  /* Mirror classic-scrollbar space so content stays centered in the panel. */
+  scrollbar-gutter: stable both-edges;
 }
 .status-line {
   display: flex;

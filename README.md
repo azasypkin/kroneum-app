@@ -2,7 +2,7 @@
 
 A macOS menu-bar timer for regular eye breaks. Work for 20 minutes, look far away and blink for 30 seconds, then repeat.
 
-<table>
+<table align="center">
   <tr>
     <th align="center">Light</th>
     <th align="center">Dark</th>
